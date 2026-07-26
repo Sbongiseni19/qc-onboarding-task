@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>QueryCrest Portal — Dashboard</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+  // Session guard — must run before any content renders.
+  // If there's no token, redirect immediately; nothing below this
+  // executes or paints for an unauthenticated visitor.
+  if (!sessionStorage.getItem("qc_token")) {
+    window.location.replace("index.html");
+  }
+</script>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">QueryCrest <span>Application Ledger</span></div>
+  <button type="button" class="btn-ghost" id="logoutBtn">Log Out</button>
+</div>
+
+<main class="dash-main">
+
+  <!-- Add Application panel -->
+  <section class="panel">
+    <h2 class="panel-title">Add Application</h2>
+    <p class="panel-sub">Record a new institution you're applying to.</p>
+
+    <div class="alert alert-error" id="addError" hidden></div>
+
+    <form id="addForm" novalidate>
+      <div class="field">
+        <label for="institution">Institution</label>
+        <select id="institution" name="institution" required>
+          <option value="" disabled selected>Select an institution…</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="course">Course</label>
+        <input type="text" id="course" name="course" placeholder="e.g. BSc Computer Science" required />
+      </div>
+
+      <div class="field">
+        <label for="academicYear">Academic Year</label>
+        <select id="academicYear" name="academic_year" required>
+          <option value="" disabled selected>Select a year…</option>
+          <option value="2026">2026</option>
+          <option value="2027">2027</option>
+          <option value="2028">2028</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Status</label>
+        <div class="status-choice">
+          <label>
+            <input type="radio" name="status" value="draft" checked />
+            <span>Save as Draft</span>
+          </label>
+          <label>
+            <input type="radio" name="status" value="submitted" />
+            <span>Submit Application</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="notes">Notes <span style="font-weight:400;color:var(--slate);">(optional)</span></label>
+        <textarea id="notes" name="notes" rows="3" placeholder="Any additional notes…"></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary" id="addSubmit">Add Application</button>
+    </form>
+  </section>
+
+  <!-- Ledger panel -->
+  <section class="panel">
+    <h2 class="panel-title">Your Applications</h2>
+    <p class="panel-sub" id="ledgerSub">Loading your applications…</p>
+
+    <ul class="ledger-list" id="ledgerList"></ul>
+  </section>
+
+</main>
+
+<script src="dashboard.js"></script>
+</body>
+</html>
