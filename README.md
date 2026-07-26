@@ -99,4 +99,8 @@ HTML · CSS · Vanilla JavaScript · Supabase (Auth + Postgres) · Deno Edge Fun
 
 ---
 
+## Submission
+
+Submitted via the `submit/sbongiseni` branch, per the onboarding task instructions.
+
 © 2026 QueryCrest (Pty) Ltd
